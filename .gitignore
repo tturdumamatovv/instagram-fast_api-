@@ -4,6 +4,7 @@
 *.pyc
 *pycache
 db.sqlite3
+ig_api.db
 media
 .idea/
 # Backup files #
