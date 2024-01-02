@@ -14,7 +14,6 @@ class UserDisplay(BaseModel):
 
     class Config:
         orm_mode = True
-        exclude = ["email", "password"]
 
 
 class PostBase(BaseModel):
@@ -24,13 +23,20 @@ class PostBase(BaseModel):
     creator_id: int
 
 
+class UserDisplayForPosts(BaseModel):
+    username: str
+
+    class Config:
+        orm_mode = True
+
+
 class PostDisplay(BaseModel):
     id: int
     image_url: str
     image_url_type: str
     caption: str
     timestamp: datetime
-    user: UserDisplay
+    user: UserDisplayForPosts
 
     class Config:
         orm_mode = True
