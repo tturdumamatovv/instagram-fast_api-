@@ -1,4 +1,6 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy.sql.schema import ForeignKey
+from sqlalchemy.orm import relationship
 
 from db.database import Base
 
@@ -9,3 +11,15 @@ class DbUser(Base):
     username = Column(String)
     email = Column(String)
     password = Column(String)
+    items = relationship('DbPost', back_populates='user')
+
+
+class DbPost(Base):
+    __tablename__ = 'post'
+    id = Column(Integer, primary_key=True, index=True)
+    image_url = Column(String)
+    image_url_type = Column(String)
+    caption = Column(String)
+    timestamp = Column(DateTime)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship('DbUser', back_populates='items')
