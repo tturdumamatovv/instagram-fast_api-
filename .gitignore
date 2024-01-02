@@ -6,6 +6,7 @@
 db.sqlite3
 ig_api.db
 media
+images
 .idea/
 # Backup files #
 *.bak
